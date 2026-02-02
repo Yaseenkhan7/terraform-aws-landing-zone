@@ -9,7 +9,7 @@
 
 This project demonstrates the architecture and end-to-end automation of a secure, scalable AWS Landing Zone using Infrastructure as Code (IaC). The goal was to create a foundational cloud environment that enforces security, governance, and networking best practices from day one.
 
-Instead of deploying a single application, this project built a "cloud factory"—a governed ecosystem where development teams can rapidly and safely provision their own infrastructure. The entire platform is codified with **Terraform**, making it repeatable, auditable, and version-controlled.
+Instead of deploying a single application, this project built a "cloud factory" a governed ecosystem where development teams can rapidly and safely provision their own infrastructure. The entire platform is codified with **Terraform**, making it repeatable, auditable, and version-controlled.
 
 **Problem Solved:** Eliminated common challenges of uncontrolled cloud adoption, such as security vulnerabilities, inconsistent environments, and cost overruns, by establishing a centralized, automated, and secure foundation for all future AWS workloads.
 
