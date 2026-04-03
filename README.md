@@ -11,19 +11,10 @@ This project demonstrates the architecture and end-to-end automation of a secure
 
 Instead of deploying a single application, this project built a "cloud factory" a governed ecosystem where development teams can rapidly and safely provision their own infrastructure. The entire platform is codified with **Terraform**, making it repeatable, auditable, and version-controlled.
 
----
-
-## 2. Key Objectives
-
-- **Centralized Governance:** Establish a multi-account structure with enforceable policies for security and compliance.
-- **Scalable Networking:** Implement a hub-and-spoke network topology that can scale to hundreds of VPCs while centralizing traffic inspection.
-- **Automated Security:** Enforce security controls and centralize logging and monitoring across all accounts from the moment of their creation.
-- **Developer Self-Service:** Empower development teams by providing a safe environment and reusable modules to deploy their IaaS resources without manual intervention from a central cloud team.
-- **Operational Excellence:** Ensure all infrastructure is managed through a GitOps-style CI/CD pipeline, providing auditability and reducing manual errors.
 
 ---
 
-## 3. Core Technologies Used
+## 2. Core Technologies Used
 
 - **Infrastructure as Code:** Terraform
 - **CI/CD & Automation:** GitHub Actions, Packer
@@ -37,7 +28,7 @@ Instead of deploying a single application, this project built a "cloud factory" 
 
 ---
 
-## 4. Architectural Deep Dive
+## 3. Architectural Deep Dive
 
 ## 1. Multi-Account Governance with AWS Organizations
 
