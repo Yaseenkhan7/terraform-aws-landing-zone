@@ -41,21 +41,19 @@ Instead of deploying a single application, this project built a "cloud factory" 
 
 ## 4. Architectural Deep Dive
 
-The Landing Zone is built on four core pillars: Governance, Networking, Security, and Developer Enablement.
-
-### Pillar 1: Multi-Account Governance with AWS Organizations
+## 1. Multi-Account Governance with AWS Organizations
 
 A multi-account strategy provides strong isolation between environments. This is managed via Terraform, creating OUs for `Security`, `Infrastructure`, `Sandbox`, and `Workloads`, and applying Service Control Policies (SCPs) to enforce guardrails like restricting regions or preventing the disabling of security services.
 
-### Pillar 2: Hub-and-Spoke Networking with Transit Gateway
+## 2. Hub-and-Spoke Networking with Transit Gateway
 
 A scalable network topology connects all environments securely. A central "Hub" VPC hosts the AWS Transit Gateway and network firewalls. All "Spoke" VPCs from workload accounts connect to this hub, centralizing traffic inspection and simplifying routing.
 
-### Pillar 3: Centralized Security and Immutable Infrastructure
+## 3. Centralized Security and Immutable Infrastructure
 
 Security is integrated by default. CloudTrail and VPC Flow Logs are shipped to a central `LogArchive` account. GuardDuty and Security Hub are enabled across all accounts, aggregating findings in a central `Security` account. An automated pipeline using **Packer** builds hardened "Golden AMIs" to ensure a secure baseline for all EC2 instances.
 
-### Pillar 4: Developer Enablement with a Self-Service IaaS Module
+## 4. Developer Enablement with a Self-Service IaaS Module
 
 A reusable **Terraform module** was created to empower developers. This module acts as a "paved road," allowing teams to deploy a standard 3-tier IaaS application in a self-service manner. It abstracts away underlying complexities, ensuring speed and safety. Developers simply provide high-level inputs, and the module provisions a pre-configured, secure, and compliant application stack.
 
