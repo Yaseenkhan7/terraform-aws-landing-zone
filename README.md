@@ -5,7 +5,7 @@
 
 ---
 
-## 1. Executive Summary
+## 1. Summary
 
 This project demonstrates the architecture and end-to-end automation of a secure, scalable AWS Landing Zone using Infrastructure as Code (IaC). The goal was to create a foundational cloud environment that enforces security, governance, and networking best practices from day one.
 
