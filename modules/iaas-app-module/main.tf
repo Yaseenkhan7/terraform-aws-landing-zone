@@ -1,4 +1,3 @@
-# This module deploys a standard 3-tier IaaS application stack.
 
 variable "application_name" {
   description = "A unique name for the application (e.g., 'my-awesome-app')."
@@ -49,7 +48,6 @@ variable "max_instances" {
   default     = 5
 }
 
-# --- Security Groups ---
 
 resource "aws_security_group" "alb_sg" {
   name        = "${var.application_name}-alb-sg"
@@ -98,7 +96,6 @@ resource "aws_security_group" "app_sg" {
   }
 }
 
-# --- Application Load Balancer ---
 
 resource "aws_lb" "main" {
   name               = "${var.application_name}-alb"
@@ -136,7 +133,6 @@ resource "aws_lb_listener" "http" {
   }
 }
 
-# --- Auto Scaling Group ---
 
 resource "aws_launch_template" "main" {
   name_prefix   = "${var.application_name}-"
@@ -170,7 +166,6 @@ resource "aws_autoscaling_group" "main" {
   target_group_arns = [aws_lb_target_group.main.arn]
 }
 
-# --- Outputs ---
 
 output "alb_dns_name" {
   description = "The DNS name of the application load balancer."
