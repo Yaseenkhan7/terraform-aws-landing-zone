@@ -1,5 +1,3 @@
-# This Packer template builds a hardened "Golden AMI" based on Ubuntu 20.04 (Focal).
-
 packer {
   required_plugins {
     amazon = {
@@ -9,7 +7,6 @@ packer {
   }
 }
 
-# Variables for configuration
 variable "aws_region" {
   type    = string
   default = "us-east-1"
@@ -20,7 +17,6 @@ variable "ami_name_prefix" {
   default = "golden-ami-ubuntu-focal"
 }
 
-# Define the source AMI to build from
 source "amazon-ebs" "ubuntu" {
   region      = var.aws_region
   ami_name    = "${var.ami_name_prefix}-{{timestamp}}"
@@ -37,7 +33,6 @@ source "amazon-ebs" "ubuntu" {
   ssh_username = "ubuntu"
 }
 
-# The 'build' block defines the provisioning steps
 build {
   name    = "golden-ami-build"
   sources = ["source.amazon-ebs.ubuntu"]
