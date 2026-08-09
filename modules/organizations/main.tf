@@ -1,4 +1,3 @@
-# This module is responsible for creating the core AWS Organizations structure.
 
 variable "organization_feature_set" {
   description = "The feature set for the organization (ALL or CONSOLIDATED_BILLING)."
@@ -22,7 +21,6 @@ variable "new_account_name" {
   type        = string
 }
 
-# --- Resources ---
 
 resource "aws_organizations_organization" "main" {
   feature_set = var.organization_feature_set
@@ -38,8 +36,7 @@ resource "aws_organizations_account" "new_account" {
   email     = var.new_account_email
   parent_id = aws_organizations_organizational_unit.workloads.id
 
-  # This allows a role to be created in the new account that can be assumed
-  # by principals in the management account.
+ 
   role_name = "OrganizationAccountAccessRole"
 }
 
@@ -68,7 +65,6 @@ resource "aws_organizations_policy_attachment" "attach_region_policy" {
   target_id = aws_organizations_organizational_unit.workloads.id
 }
 
-# --- Outputs ---
 
 output "organization_id" {
   value = aws_organizations_organization.main.id
