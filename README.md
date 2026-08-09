@@ -1,15 +1,8 @@
 # Automated AWS IaaS Landing Zone
 
-**Author:** Yaseenkhan7  
-**GitHub:** [https://github.com/Yaseenkhan7](https://github.com/Yaseenkhan7)
+This project implements end-to-end automation of a secure, scalable AWS Landing Zone using Infrastructure as Code (IaC). it creates a cloud environment that enforces security, governance, and networking best practices.
 
----
-
-## 1. Summary
-
-This project demonstrates the architecture and end-to-end automation of a secure, scalable AWS Landing Zone using Infrastructure as Code (IaC). it creates a cloud environment that enforces security, governance, and networking best practices.
-
-Instead of deploying a single application, this project built a "cloud factory" a governed ecosystem where development teams can rapidly and safely provision their own infrastructure. The entire platform is codified with **Terraform**, making it repeatable, auditable, and version-controlled.
+Instead of deploying a single application, this project built a cloud factory, where development teams can rapidly and safely provision their own infrastructure. The entire platform is codified with **Terraform**, making it repeatable, auditable, and version-controlled.
 
 
 ---
@@ -28,23 +21,26 @@ Instead of deploying a single application, this project built a "cloud factory" 
 
 ---
 
-## 3. Architectural Deep Dive
+## Key Features
 
-## 1. Multi-Account Governance with AWS Organizations
+- **Multi-Account Governance with AWS Organizations**
+  - Uses Terraform to manage separate OUs for `Security`, `Infrastructure`, `Sandbox`, and `Workloads`.
+  - Uses Service Control Policies (SCPs) to enforce guardrails such as region restrictions and protection of security services.
 
-A multi-account strategy provides strong isolation between environments. This is managed via Terraform, creating OUs for `Security`, `Infrastructure`, `Sandbox`, and `Workloads`, and applying Service Control Policies (SCPs) to enforce guardrails like restricting regions or preventing the disabling of security services.
+- **Hub-and-Spoke Networking with Transit Gateway**
+  - Uses a central VPC as the hub for connecting workload environments.
+  - AWS Transit Gateway connects the spoke VPCs.
+  - Network firewalls provide centralized traffic inspection and control.
 
-## 2. Hub-and-Spoke Networking with Transit Gateway
+- **Centralized Security and Immutable Infrastructure**
+  - Centralizes CloudTrail and VPC Flow Logs in a dedicated `LogArchive` account.
+  - Uses GuardDuty and Security Hub to monitor and aggregate security findings.
+  - Uses Packer to build hardened Golden AMIs for EC2 instances.
 
-A scalable network topology connects all environments securely. A central "Hub" VPC hosts the AWS Transit Gateway and network firewalls. All "Spoke" VPCs from workload accounts connect to this hub, centralizing traffic inspection and simplifying routing.
-
-## 3. Centralized Security and Immutable Infrastructure
-
-Security is integrated by default. CloudTrail and VPC Flow Logs are shipped to a central `LogArchive` account. GuardDuty and Security Hub are enabled across all accounts, aggregating findings in a central `Security` account. An automated pipeline using **Packer** builds hardened "Golden AMIs" to ensure a secure baseline for all EC2 instances.
-
-## 4. Developer Enablement with a Self-Service IaaS Module
-
-A reusable **Terraform module** was created to empower developers. This module acts as a "paved road," allowing teams to deploy a standard 3-tier IaaS application in a self-service manner. It abstracts away underlying complexities, ensuring speed and safety. Developers simply provide high-level inputs, and the module provisions a pre-configured, secure, and compliant application stack.
+- **Developer Self-Service with Terraform**
+  - Provides a reusable Terraform module for deploying a standard three-tier application.
+  - Developers provide high-level configuration values instead of managing the underlying infrastructure manually.
+  - Standardizes application deployments while maintaining security and configuration requirements.
 
 ---
 
